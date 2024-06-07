@@ -4,3 +4,11 @@ Libre Wolf - https://aur.archlinux.org/librewolf.git
 #Proton:
 Mail - https://aur.archlinux.org/protonmail-desktop.git
 VPN - https://aur.archlinux.org/protonvpn.git
+Pass - https://aur.archlinux.org/packages/protonpass-bin
+
+#General:
+davmail (Required for Neomutt) - https://aur.archlinux.org/davmail.git
+anydesk - https://aur.archlinux.org/anydesk-bin.git
+youtube-dl - https://aur.archlinux.org/youtube-dl.git
+Github - https://aur.archlinux.org/github-desktop.git
+Draw.io - https://aur.archlinux.org/drawio-desktop.git
