@@ -1,5 +1,9 @@
 #This contains everything I need for my workstation.
 
+-High Security
+-Minimalist
+-Dark themes
+
 -Pre Prep-
 * Download Arch Linux
 https://mirrors.urbanwave.co.za/archlinux/iso/2024.06.01/archlinux-x86_64.iso
