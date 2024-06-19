@@ -14,8 +14,11 @@
 		"custom/spacing",
 		"custom/workspaces", "hyprland/workspaces"
 	],
-
+	"modules-center": [
+		"hyprland/window"
+	  ],
 	"modules-right": [
+		"tray",
 		"custom/volume", "wireplumber",
 		"custom/brightness", "backlight",
 		"custom/battery", "battery",
@@ -23,7 +26,16 @@
 		"custom/time","clock",
 		"custom/spacing"
 	],
-
+	"wlr/taskbar": {
+		"on-click": "activate",
+		"on-click-middle": "close",
+		"ignore-list": [
+		  "foot"
+		]
+	},
+	"tray": {
+  	"spacing": 4
+	},
 	"hyprland/workspaces": {
 		"disable-scroll": false,
 		"all-outputs": true,
@@ -53,12 +65,6 @@
 			"10": "10",
 		}
 	},
-	"hyprland/language": {
-		"format": "{}",
-		"format-en": "en",
-		"format-sk": "sk",
-		"on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
-	},
 	"custom/workspaces": {
 		"tooltip": false,
 		"format": "workspaces"
@@ -77,11 +83,6 @@
 	"custom/battery": {
 		"tooltip": false,
 		"format": "battery"
-	},
-	"custom/layout": {
-		"tooltip": false,
-		"format": "layout",
-		"on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
 	},
 	"custom/time": {
 		"tooltip": false,

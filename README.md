@@ -62,6 +62,7 @@ Libre Wolf - https://aur.archlinux.org/librewolf.git
 Mail - https://aur.archlinux.org/protonmail-desktop.git
 VPN - https://aur.archlinux.org/protonvpn.git
 Pass - https://aur.archlinux.org/packages/protonpass-bin
+Standard Notes - https://aur.archlinux.org/packages/standardnotes-desktop
 
 -General-
 davmail (Required for Neomutt) - https://aur.archlinux.org/davmail.git
