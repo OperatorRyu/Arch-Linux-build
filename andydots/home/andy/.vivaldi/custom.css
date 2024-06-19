@@ -1,0 +1,30 @@
+/* remove home button */
+.button-addressfield.home,.button-tabbar.home,.button-toolbar-small.home,.button-toolbar.home { 
+	display:none !important
+}
+
+/* remove vivaldi button */
+button.vivaldi {
+    display: none !important;
+}
+.tab-strip, #tabs-container .resize {
+    margin-left: -14px;
+}
+
+/* autohide/remove site info */
+#browser:not(.private) .addressfield .addressfield-siteinfo {
+	opacity: 0;
+	display: none;
+}
+#browser:not(.private) .addressfield .addressfield-siteinfo:hover {
+	opacity: 1;
+}
+
+.hasfocus .quick-command-container .quick-commands .quick-command[data-selected], .isblurred .quick-command-container .quick-commands .quick-command[data-selected], .urlSearch section .highlight {
+	/*background-color: var(--colorAccentBg);*/
+	background-color: var(--colorBgIntense);
+	color: var(--colorFgFaded);
+}
+.quick-command-container .quick-command-search, .quick-command-container .quick-command-search-hint {
+	border: none;
+}
