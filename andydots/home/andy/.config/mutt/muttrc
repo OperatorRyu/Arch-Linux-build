@@ -1,0 +1,9 @@
+set imap_user = "your-email@domain.com"
+set imap_pass = "your-password"
+set folder = "imaps://localhost:1143"
+set spoolfile = "+INBOX"
+set smtp_url = "smtp://localhost:1025"
+set smtp_pass = "your-password"
+
+set from = "your-email@domain.com"
+set realname = "Your Name"
