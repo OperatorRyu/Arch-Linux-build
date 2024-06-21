@@ -70,6 +70,7 @@ anydesk - https://aur.archlinux.org/anydesk-bin.git
 youtube-dl - https://aur.archlinux.org/youtube-dl.git
 Github - https://aur.archlinux.org/github-desktop.git
 Draw.io - https://aur.archlinux.org/drawio-desktop.git
+wlogout - https://aur.archlinux.org/wlogout.git
 
 5) Configuration:
     5a) Ranger into /home/andy/.config and paste/replace with these dot files from the repo:
