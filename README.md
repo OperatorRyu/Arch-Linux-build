@@ -44,7 +44,7 @@ User Account > Add a user > andy > [Set password] > yes > Confirm and Exit
 Profile > Type > Desktop > Hyprland > polkit > Graphics driver > [case by case, proprietary] > greeter > sddm
 Audio > pipewire
 Kernel > ONLY linux-hardened
-Additional packages > clamav neovim-qt discord gcc ranger code git nftables spotify-launcher firewalld wireguard-tools kdeconnect htop fastfetch libreoffice-fresh cmake neomutt smbclient nmap fuzzel waybar
+Additional packages > clamav neovim-qt discord gcc ranger code git nftables spotify-launcher firewalld wireguard-tools kdeconnect htop fastfetch libreoffice-fresh cmake neomutt smbclient nmap fuzzel waybar dunst swaylock zathura
 Network Configuration > NetworkManager
 Timezone > Africa/Johannesburg
 Automatic time sync > - Skip
@@ -71,6 +71,7 @@ youtube-dl - https://aur.archlinux.org/youtube-dl.git
 Github - https://aur.archlinux.org/github-desktop.git
 Draw.io - https://aur.archlinux.org/drawio-desktop.git
 wlogout - https://aur.archlinux.org/wlogout.git
+cava - https://aur.archlinux.org/cava.git
 
 5) Configuration:
     5a) Ranger into /home/andy/.config and paste/replace with these dot files from the repo:
