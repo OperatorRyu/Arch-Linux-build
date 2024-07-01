@@ -90,6 +90,9 @@ button:hover {
 	margin-bottom: 2px;
 }
 
+.modules-center {
+	color: #d4c8b2;
+}
 #wireplumber {
 	border-right: 2px solid rgba(158, 148, 137, 0.7);
 }
