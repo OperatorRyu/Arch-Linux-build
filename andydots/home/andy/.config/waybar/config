@@ -19,11 +19,10 @@
 	  ],
 	"modules-right": [
 		"tray",
-		"custom/volume", "wireplumber",
-		"custom/brightness", "backlight",
-		"custom/battery", "battery",
-		"custom/layout", "hyprland/language",
-		"custom/time","clock",
+		"custom/Volume", "pipewire",
+		"custom/Brightness", "backlight",
+		"custom/Battery", "battery",
+		"clock",
 		"custom/spacing"
 	],
 	"wlr/taskbar": {
@@ -102,12 +101,16 @@
 		"tooltip": false,
 		"scroll-step": 5.0,
 	},
-	"wireplumber": {
-		"format": "{volume}%",
-		"format-muted": "muted",
-		"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-		"tooltip": false,
-		"scroll-step": 5.0,
+	"pipewire": {
+		"exec": "pw-volume status",
+		"return-type": "json",
+		"interval": "once",
+		"signal": 8,
+		"format": "{icon} {percentage}",
+		"format-icons": {
+			"mute": "",
+			"default": ["", "", ""]
+		}
 	},
 	"battery": {
 		"format": "{capacity}%",

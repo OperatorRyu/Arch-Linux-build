@@ -5,10 +5,10 @@
 }
 
 window#waybar {
-	border: 2px solid rgba(158, 148, 137, 0.13);
-	border-radius: 6px;
+	border: 1px solid rgba(111, 111, 111, 0.10);
+	border-radius: 0px;
 
-	background-color: rgba(12, 12, 9, 0.3);
+	background-color: rgba(111, 111, 111, 0.15);
 
 	transition-property: background-color;
 	transition-duration: .5s;
@@ -18,22 +18,22 @@ window#waybar {
 	margin: 2px 10px;
 	padding-top: 5px;
 
-	color: rgb(212, 200, 178);
+	color: rgb(111, 111, 111);
 
 	font-weight: 700;
 }
 
 #custom-volume {
 	padding-left: 10px;
-	border-left: 2px solid rgba(158, 148, 137, 0.7);
+	border-left: 2px solid rgba(53, 0, 255, 0.7);
 }
 
 #wireplumber, #backlight, #battery, #language, #clock {
 	padding: 4px 10px 0px 0px;
 	margin: 2px 0px;
 
-	color: rgb(234, 229, 225);
-	border-right: 2px solid rgba(158, 148, 137, 0.13);
+	color: #e9f0fd;
+	border-right: 2px solid rgba(53, 0, 255, 0.13);
 
 	font-weight: 600;
 }
@@ -57,20 +57,20 @@ button:hover {
 	margin-right: 2px;
 	margin-left: 0px;
 	font-weight: 900;
-	color: rgb(234, 229, 225);
+	color: rgb(0, 0, 0);
 }
 
 #workspaces button:hover {
-	background-color: rgba(84, 84, 82, 0.3);
+	background-color: rgba(255, 0, 0, 0.5);
 }
 
 #workspaces button.active {
-	background-color: rgba(157, 157, 156, 0.3);
+	background-color: rgba(255, 0, 0, 0.16);
 }
 
 #workspaces button.empty {
 	font-weight: 600;
-	color: rgb(204, 200, 196)
+	color: #e9f0fd;
 }
 
 #custom-workspaces {
@@ -81,7 +81,7 @@ button:hover {
 	margin-left: 10px;
 	margin-right: 0px;
 	padding-right: 10px;
-	color: #d4c8b2;
+	color: #e9f0fd;
 }
 
 .modules-left > widget:first-child > #custom-spacing {
@@ -89,9 +89,8 @@ button:hover {
 	margin-top: 2px;
 	margin-bottom: 2px;
 }
-
 .modules-center {
-	color: #d4c8b2;
+	color: #e9f0fd;
 }
 #wireplumber {
 	border-right: 2px solid rgba(158, 148, 137, 0.7);

@@ -1,6 +1,6 @@
 {
     "label" : "lock",
-    "action" : "swaylock",
+    "action" : "kitty -e sh -c 'swaylock --image /home/andy/.config/hypr/wallpaper.jpg'",
     "text" : "Lock",
     "keybind" : "l"
 }
