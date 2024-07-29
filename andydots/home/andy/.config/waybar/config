@@ -100,16 +100,11 @@
 		"format": "{percent}%",
 		"tooltip": false,
 		"scroll-step": 5.0,
-	"custom/pipewire": {
-    		"exec": "pw-volume status",
-    		"return-type": "json",
-    		"interval": "once",
-    		"signal": 8,
-    		"format": "{icon} {percentage}",
-    		"format-icons": {
-        	"mute": "",
-        	"default": ["󰕿", "󰖀", "󰕾"]
-    	}
+	},
+	"wireplumber": {
+		"format": "{volume}%",
+		"format-muted": "Muted",
+		"on-click": "helvum",
 	},
 	"battery": {
 		"format": "{capacity}%",
