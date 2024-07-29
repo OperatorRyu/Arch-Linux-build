@@ -52,7 +52,7 @@ This guide contains everything needed to set up a high-security, minimalist work
      - **Kernel:** linux-hardened
      - **Additional Packages:**
        ```bash
-       clamav neovim-qt discord gcc ranger code git openssh nftables spotify-launcher firewalld wireguard-tools kdeconnect htop fastfetch libreoffice-fresh cmake smbclient nmap fuzzel waybar dunst swaylock vivaldi gnome-keyring code ly
+       clamav neovim-qt discord gcc ranger code git openssh nftables spotify-launcher firewalld wireguard-tools kdeconnect htop fastfetch libreoffice-fresh cmake smbclient nmap fuzzel waybar dunst swaylock vivaldi gnome-keyring code ly mpvpaper
        ```
      - **Network Configuration:** NetworkManager
      - **Timezone:** Africa/Johannesburg
