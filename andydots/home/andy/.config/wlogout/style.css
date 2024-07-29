@@ -8,12 +8,12 @@ window {
 
 button {
     margin: 5px;
-    color: #fafafa;
-    background-color: #400c0c;
+    color: #ff00f5;
+    background-color: #000000;
     background-size: 20%;
     background-repeat: no-repeat;
     background-position: center;
-    border: 5px solid #38383a;
+    border: 5px solid #ff00f5;
     border-radius: 15px;
     box-shadow: none;
     text-shadow: none;
@@ -22,9 +22,11 @@ button {
 }
 
 button:focus, button:active, button:hover {
-    color: #400c0c;
-    background-color: #570404;
-    text-shadow: none;
+    color: #06f1fb;
+    background-color: #000000;
+    border: 5px solid #06f1fb;
+    text-shadow: 0 0 5px #06f1fb;
+    box-shadow: 0 0 5px #06f1fb;
 }
 
 #lock {
