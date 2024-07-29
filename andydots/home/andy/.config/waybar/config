@@ -100,17 +100,16 @@
 		"format": "{percent}%",
 		"tooltip": false,
 		"scroll-step": 5.0,
-	},
-	"pipewire": {
-		"exec": "pw-volume status",
-		"return-type": "json",
-		"interval": "once",
-		"signal": 8,
-		"format": "{icon} {percentage}",
-		"format-icons": {
-			"mute": "",
-			"default": ["", "", ""]
-		}
+	"custom/pipewire": {
+    		"exec": "pw-volume status",
+    		"return-type": "json",
+    		"interval": "once",
+    		"signal": 8,
+    		"format": "{icon} {percentage}",
+    		"format-icons": {
+        	"mute": "",
+        	"default": ["󰕿", "󰖀", "󰕾"]
+    	}
 	},
 	"battery": {
 		"format": "{capacity}%",
