@@ -40,17 +40,20 @@ This guide contains everything needed to set up a high-security, minimalist work
      - **Language:** Skip
      - **Mirror Region:** South Africa
      - **Locales:** Skip
-     - **Disk Configuration:** Best-effort default layout on `/dev/sda`, use XFS, confirm
+     - **Disk Configuration:** Best-effort default layout on /dev/sda, use XFS, confirm
      - **Disk Encryption:** Yes, set a password
      - **BootLoader:** GRUB (or Systemd if available)
      - **Swap:** Skip
-     - **Hostname:** andylap
+     - **Hostname:** [Give a name to the device]
      - **Root Password:** Set a password
      - **User Account:** Add user, set a password, confirm
      - **Profile:** Desktop, Hyprland, polkit, proprietary graphics driver, no greeter
      - **Audio:** pipewire
-     - **Kernel:** `linux-hardened`
-     - **Additional Packages:** Select all listed packages
+     - **Kernel:** linux-hardened
+     - **Additional Packages:**
+       ```bash
+       clamav neovim-qt discord gcc ranger code git openssh nftables spotify-launcher firewalld wireguard-tools kdeconnect htop fastfetch libreoffice-fresh cmake smbclient nmap fuzzel waybar dunst swaylock vivaldi gnome-keyring code
+       ```
      - **Network Configuration:** NetworkManager
      - **Timezone:** Africa/Johannesburg
      - **Automatic Time Sync:** Skip
