@@ -75,6 +75,7 @@ This guide contains everything needed to set up a high-security, minimalist work
    - [Draw.io](https://aur.archlinux.org/drawio-desktop.git)
    - [wlogout](https://aur.archlinux.org/wlogout.git)
    - [cava](https://aur.archlinux.org/cava.git)
+   - [pw-volume](https://aur.archlinux.org/pw-volume.git)
 
 ## Configuration
 
