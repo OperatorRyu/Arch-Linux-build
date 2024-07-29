@@ -179,4 +179,6 @@ nmcli connection down "Whatever the name is of your connection"
 nmcli connection up "Whatever the name is of your connection"
 ```
 **(Optional) Set Live Wallpaper:**
-mpvpaper '*' /home/[user]/.config/hypr/livewallpapers/1
+```bash
+sudo mpvpaper '*' /home/[user]/.config/hypr/livewallpapers/1
+```
