@@ -1,163 +1,159 @@
-#This contains everything I need for my workstation.
+# Workstation Setup Guide
 
--High Security
--Minimalist
--Dark themes
+This guide contains everything needed to set up a high-security, minimalist workstation.
 
--Pre Prep-
-* Download Arch Linux
-https://mirrors.urbanwave.co.za/archlinux/iso/2024.06.01/archlinux-x86_64.iso
+## Pre-Setup
 
-* Rufus
-https://github.com/pbatard/rufus/releases/download/v4.5/rufus-4.5p.exe
+1. **Download Arch Linux:**
+   - [Arch Linux download](https://archlinux.org/download/) (Choose a South African mirror)
 
-1) Instructions:
-    1a) Burn Arch Linux to the USB
-    1b) Boot into the BIOS of the laptop
-    1c) Select Arch Linux USB as bootable in bootloader (UEFI)
-    1d) Select "Install" option and wait for an input prompt
+2. **Download Rufus (for Windows users):**
+   - [Rufus v4.5](https://github.com/pbatard/rufus/releases/download/v4.5/rufus-4.5p.exe)
+   - Or use a similar tool compatible with your OS
 
-2) -Connect to network-
-For ethernet, simply connect it, otherwise for Wifi run the following commands:
+## Installation Instructions
 
-iwctl
-station wlan0 connect [SSID you want to connect to]
-[password of the SSID]
-exit
+1. **Prepare Installation Media:**
+   - Burn Arch Linux to a USB drive using Rufus or another tool.
 
-3) Prepping the install script
-run the following command and wait for a selection based output:
+2. **Boot from USB:**
+   - Access BIOS/UEFI settings on your laptop.
+   - Set the USB drive as the boot device.
+   - Choose "Install" and wait for the prompt.
 
-archinstall
+3. **Connect to the Network:**
+   - For Ethernet, just connect it.
+   - For WiFi, use these commands:
+     ```bash
+     iwctl
+     station wlan0 connect [SSID]
+     [password]
+     exit
+     ```
 
--Select the following-
-Archinstall language - Skip
-Mirrors > Mirror Region > South Africa
-Locales - Skip
-Disk Configuration > Use a Best-effort default partition layout > [Model name of drive]/dev/sda/ > xfs > yes
-Disk Encryption > Yes > [Set encryption password] 
-BootLoader > Grub (Systemd if avaliable)
-Swap - Skip
-Hostname > andylap
-Root Password > [Set root password]
-User Account > Add a user > andy > [Set password] > yes > Confirm and Exit
-Profile > Type > Desktop > Hyprland > polkit > Graphics driver > [case by case, proprietary] > greeter > sddm
-Audio > pipewire
-Kernel > ONLY linux-hardened
-Additional packages > clamav neovim-qt discord gcc ranger code git openssh nftables spotify-launcher firewalld wireguard-tools kdeconnect htop fastfetch libreoffice-fresh cmake neomutt smbclient nmap fuzzel waybar dunst swaylock zathura
-Network Configuration > NetworkManager
-Timezone > Africa/Johannesburg
-Automatic time sync > - Skip
-Optional Repositories > multilib
--> Install
+4. **Run the Installation Script:**
+   - Execute:
+     ```bash
+     archinstall
+     ```
+   - Follow these selections:
+     - **Language:** Skip
+     - **Mirror Region:** South Africa
+     - **Locales:** Skip
+     - **Disk Configuration:** Best-effort default layout on `/dev/sda`, use XFS, confirm
+     - **Disk Encryption:** Yes, set a password
+     - **BootLoader:** GRUB (or Systemd if available)
+     - **Swap:** Skip
+     - **Hostname:** andylap
+     - **Root Password:** Set a password
+     - **User Account:** Add user, set a password, confirm
+     - **Profile:** Desktop, Hyprland, polkit, proprietary graphics driver, no greeter
+     - **Audio:** pipewire
+     - **Kernel:** `linux-hardened`
+     - **Additional Packages:** Select all listed packages
+     - **Network Configuration:** NetworkManager
+     - **Timezone:** Africa/Johannesburg
+     - **Automatic Time Sync:** Skip
+     - **Optional Repositories:** multilib
+   - Select **Install**, wait for completion, then reboot and log in.
 
-Wait for install to finish
+## Install AUR Packages
 
-4) AUR Packages
+1. **Proton:**
+   - [Protonmail](https://aur.archlinux.org/proton-mail-bin.git)
+   - [ProtonVPN](https://aur.archlinux.org/protonvpn.git)
+   - [ProtonPass](https://aur.archlinux.org/packages/protonpass-bin)
+   - [Proton Standard Notes](https://aur.archlinux.org/packages/standardnotes-desktop)
 
--Browser-
-Libre Wolf - https://aur.archlinux.org/librewolf.git
+2. **General:**
+   - [Anydesk](https://aur.archlinux.org/anydesk-bin.git)
+   - [youtube-dl](https://aur.archlinux.org/youtube-dl.git)
+   - [GitHub Desktop](https://aur.archlinux.org/github-desktop.git)
+   - [Draw.io](https://aur.archlinux.org/drawio-desktop.git)
+   - [wlogout](https://aur.archlinux.org/wlogout.git)
+   - [cava](https://aur.archlinux.org/cava.git)
 
--Proton-
-Mail - https://aur.archlinux.org/protonmail-desktop.git
-VPN - https://aur.archlinux.org/protonvpn.git
-Pass - https://aur.archlinux.org/packages/protonpass-bin
-Standard Notes - https://aur.archlinux.org/packages/standardnotes-desktop
+## Configuration
 
--General-
-davmail (Required for Neomutt) - https://aur.archlinux.org/davmail.git
-anydesk - https://aur.archlinux.org/anydesk-bin.git
-youtube-dl - https://aur.archlinux.org/youtube-dl.git
-Github - https://aur.archlinux.org/github-desktop.git
-Draw.io - https://aur.archlinux.org/drawio-desktop.git
-wlogout - https://aur.archlinux.org/wlogout.git
-cava - https://aur.archlinux.org/cava.git
+1. **Update Ranger Config:**
+   - Copy dot files to `/home/andy/.config`
 
-5) Configuration:
-    5a) Ranger into /home/andy/.config and paste/replace with these dot files from the repo:
-        .config
-        .librewolf
-    5b) vim into /etc/nftables.conf, Copy paste below:
-        
-        #!/usr/bin/nft -f
- 
-        table inet filter
-        delete table inet filter
-        table inet filter {
-        chain input {
-        type filter hook input priority filter
-        policy drop
- 
-        ct state invalid drop comment "early drop of invalid connections"
-        ct state {established, related} accept comment "allow tracked connections"
-        iifname lo accept comment "allow from loopback"
-        ip protocol icmp accept comment "allow icmp"
-        meta l4proto ipv6-icmp accept comment "allow icmp v6"
-        pkttype host limit rate 5/second counter reject with icmpx type admin-prohibited
-        counter
-        }
+2. **Configure Firewall:**
+   - Edit `/etc/nftables.conf`:
+     ```bash
+     #!/usr/bin/nft -f
 
-        chain forward {
-        type filter hook forward priority filter
-        policy drop
-            }
-        }
-    
-    5c) vim into /etc/sysctl.d/90-network.conf, copy paste below:
+     table inet filter {
+       chain input {
+         type filter hook input priority filter; policy drop;
+         ct state invalid drop
+         ct state {established, related} accept
+         iifname lo accept
+         ip protocol icmp accept
+         meta l4proto ipv6-icmp accept
+         pkttype host limit rate 5/second counter reject with icmpx type admin-prohibited
+       }
 
-        # Do not act as a router
-        net.ipv4.ip_forward = 0
-        net.ipv6.conf.all.forwarding = 0
+       chain forward {
+         type filter hook forward priority filter; policy drop;
+       }
+     }
+     ```
+   - Edit `/etc/sysctl.d/90-network.conf`:
+     ```bash
+     # Do not act as a router
+     net.ipv4.ip_forward = 0
+     net.ipv6.conf.all.forwarding = 0
 
-        # SYN flood protection
-        net.ipv4.tcp_syncookies = 1
+     # SYN flood protection
+     net.ipv4.tcp_syncookies = 1
 
-        # Disable ICMP redirect
-        net.ipv4.conf.all.accept_redirects = 0
-        net.ipv4.conf.default.accept_redirects = 0
-        net.ipv4.conf.all.secure_redirects = 0
-        net.ipv4.conf.default.secure_redirects = 0
-        net.ipv6.conf.all.accept_redirects = 0
-        net.ipv6.conf.default.accept_redirects = 0
+     # Disable ICMP redirect
+     net.ipv4.conf.all.accept_redirects = 0
+     net.ipv4.conf.default.accept_redirects = 0
+     net.ipv4.conf.all.secure_redirects = 0
+     net.ipv4.conf.default.secure_redirects = 0
+     net.ipv6.conf.all.accept_redirects = 0
+     net.ipv6.conf.default.accept_redirects = 0
 
-        # Do not send ICMP redirects
-        net.ipv4.conf.all.send_redirects = 0
-        net.ipv4.conf.default.send_redirects = 0
+     # Do not send ICMP redirects
+     net.ipv4.conf.all.send_redirects = 0
+     net.ipv4.conf.default.send_redirects = 0
+     ```
 
-6) Starting services
-    6a) NetworkManager:
-        sudo systemctl enable NetworkManager.service
-        sudo systemctl start NetworkManager.service
+## Start Services
 
-    6b) Firewall:
-        sudo systemctl enable nftables
-        sudo systemctl start nftables
-        nft list ruleset
+1. **NetworkManager:**
+   ```bash
+   sudo systemctl enable NetworkManager.service
+   sudo systemctl start NetworkManager.service
 
-    6c) Antivirus:
-        run the following commands:
-        sudo freshclam
-        sudo systemctl enable clamav-freshclam.service
-        sudo systemctl start clamav-freshclam.service
-        sudo systemctl enable clamav-daemon.service
-        sudo systemctl start clamav-daemon.service
+2. **Firewall:**
+```bash
+sudo systemctl enable nftables
+sudo systemctl start nftables
+nft list ruleset
+```
 
-    6d) Load new properties into system configuration
-        sudo sysctl --system
-        sudo reboot now
+3. **Antivirus:**
+```bash
+sudo freshclam
+sudo systemctl enable clamav-freshclam.service
+sudo systemctl start clamav-freshclam.service
+sudo systemctl enable clamav-daemon.service
+sudo systemctl start clamav-daemon.service
+```
 
- 7) Final Touches
-    7a) Librewolf browser:
-        Home Page: https://operatorryu.github.io/startpage/
-        Search Engine - 4Get.ca
-        Extensions:
-            - AdNauseam
-            - Cookie AutoDelete
-            - Dark Reader
-            - Disconnect
-            - Sidebery
-            - uBlock Origin
-            - User-Agent Switcher and Manager
-    7b) Sddm:
-        - vim into /usr/lib/sddm/sddm.conf.d/default.conf
-        - under [Theme] edit current to be "Current=andylogin"
+4. **Apply System Configuration:**
+```bash
+sudo sysctl --system
+sudo reboot now
+```
+
+## Final Touches
+**Browser:**
+1) Set Home Page to https://operatorryu.github.io/startpage/
+2) Set Search engine to https://4Get.ca
+
+**Dot files:**
+Copy to /home/[username]/.config
