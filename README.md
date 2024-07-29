@@ -160,3 +160,21 @@ sudo reboot now
 
 **Dot files:**
 Copy to /home/[username]/.config
+
+**Give the device a static IP address:**
+1) Find the active connection:
+```bash
+nmcli connection show
+```
+2) Set the IP:
+```bash
+nmcli connection modify "Whatever the name is of your connection" ipv4.addresses IP.Adderss.goes.here/24
+nmcli connection modify "Whatever the name is of your connection" ipv4.gateway gateway.Adderss.goes.here
+nmcli connection modify "Whatever the name is of your connection" ipv4.dns "8.8.8.8 8.8.4.4"
+nmcli connection modify "Whatever the name is of your connection" ipv4.method manual
+```
+3) Reset the connection:
+```bash
+nmcli connection down "Whatever the name is of your connection"
+nmcli connection up "Whatever the name is of your connection"
+```
