@@ -52,7 +52,7 @@ This guide contains everything needed to set up a high-security, minimalist work
      - **Kernel:** linux-hardened
      - **Additional Packages:**
        ```bash
-       clamav neovim-qt discord gcc ranger code git openssh nftables spotify-launcher firewalld wireguard-tools kdeconnect htop fastfetch libreoffice-fresh cmake smbclient nmap fuzzel waybar dunst swaylock vivaldi gnome-keyring code ly mpvpaper
+       clamav neovim-qt discord gcc yazi code git openssh nftables spotify-launcher firewalld wireguard-tools kdeconnect htop fastfetch libreoffice-fresh cmake smbclient nmap fuzzel waybar dunst hyprlock hypridle vivaldi gnome-keyring code ly 
        ```
      - **Network Configuration:** NetworkManager
      - **Timezone:** Africa/Johannesburg
@@ -76,10 +76,11 @@ This guide contains everything needed to set up a high-security, minimalist work
    - [wlogout](https://aur.archlinux.org/wlogout.git)
    - [cava](https://aur.archlinux.org/cava.git)
    - [pw-volume](https://aur.archlinux.org/pw-volume.git)
+   - [Super Productivity](https://aur.archlinux.org/superproductivity.git)
 
 ## Configuration
 
-1. **Update Ranger Config:**
+1. **Update Config:**
    - Copy dot files to `/home/andy/.config`
 
 2. **Configure Firewall:**
