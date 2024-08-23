@@ -1,6 +1,0 @@
-image /home/andy/.config/swaylock/background/wallpaper.png
-show-failed-attempts
-daemonize
-ignore-empty-password
-clock
-timestr=%R

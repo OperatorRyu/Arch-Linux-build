@@ -19,7 +19,7 @@
 	  ],
 	"modules-right": [
 		"tray",
-		"custom/Volume", "pipewire",
+		"custom/Volume", "pulseaudio",
 		"custom/Brightness", "backlight",
 		"custom/Battery", "battery",
 		"clock",
@@ -101,13 +101,28 @@
 		"tooltip": false,
 		"scroll-step": 5.0,
 	},
-	"wireplumber": {
-		"format": "{volume}%",
-		"format-muted": "Muted",
-		"on-click": "helvum",
-	},
-	"battery": {
-		"format": "{capacity}%",
-		"tooltip": false,
-	}
+  "pulseaudio": {
+    "format": "{volume}   {icon}",
+    "format-muted": "󰝟",
+    "format-icons": {
+      "headphone": "󰋋",
+      "hands-free": "󰽯",
+      "headset": "󰋎",
+      "phone": "",
+      "portable": "󰼽",
+      "car": "󰄍",
+      "default": [""]
+    },
+    "scroll-step": 1,
+    "on-click": "pavucontrol",
+    "ignored-sinks": ["Easy Effects Sink"]
+  },
+  "battery": {
+    "interval": 5,
+    "format": "{power}  W    {capacity}   {icon}",
+    "format-icons": ["","","","","",""],
+    "format-charging": "{capacity}  <span color='#00ff00'>{icon}</span>",
+    "tooltip": false
+    
+  }
 }
