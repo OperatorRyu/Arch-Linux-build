@@ -1,129 +1,163 @@
 {
-	"layer": "bottom",
-	"position": "top",
-	"height": 32,
-	"spacing": 0,
+    "position": "bottom",
+    "layer": "top",
+    "height": 16,
 
-	"tooltip": false,
-
-	"margin-top": 12,
-	"margin-left": 12,
-	"margin-right": 12,
-
-	"modules-left": [
-		"custom/spacing",
-		"custom/workspaces", "hyprland/workspaces"
-	],
-	"modules-center": [
-		"hyprland/window"
-	  ],
-	"modules-right": [
-		"tray",
-		"custom/Volume", "pulseaudio",
-		"custom/Brightness", "backlight",
-		"custom/Battery", "battery",
-		"clock",
-		"custom/spacing"
-	],
-	"wlr/taskbar": {
-		"on-click": "activate",
-		"on-click-middle": "close",
-		"ignore-list": [
-		  "foot"
-		]
-	},
-	"tray": {
-  	"spacing": 4
-	},
-	"hyprland/workspaces": {
-		"disable-scroll": false,
-		"all-outputs": true,
-		"active-only": false,
-		"format": "{icon}",
-		"persistent-workspace": true,
-		"alphabetical_sort": true,
-		"on-scroll-up": "hyprctl dispatch workspace e+1",
-		"on-scroll-down": "hyprctl dispatch workspace e-1",
-		"persistent-workspaces": {
-			"1": [],
-			"2": [],
-			"3": [],
-			"4": [],
-			"5": [],
-		},
-		"format-icons": {
-			"1": "1",
-			"2": "2",
-			"3": "3",
-			"4": "4",
-			"5": "5",
-			"6": "6",
-			"7": "7",
-			"8": "8",
-			"9": "9",
-			"10": "10",
-		}
-	},
-	"custom/workspaces": {
-		"tooltip": false,
-		"format": "workspaces"
-	},
-	"custom/volume": {
-		"tooltip": false,
-		"format": "volume",
-		"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-	},
-	"custom/brightness": {
-		"tooltip": false,
-		"format": "brightness",
-		"on-scroll-up": "brightnessctl s 5%+",
-		"on-scroll-down": "brightnessctl s 5%-"
-	},
-	"custom/battery": {
-		"tooltip": false,
-		"format": "battery"
-	},
-	"custom/time": {
-		"tooltip": false,
-		"format": "time"
-	},
-	"custom/spacing": {
-		"tooltip": false,
-		"format": " "
-	},
-	"clock": {
-		"format": "{:%H:%M}",
-		"format-alt": "{:%Y-%m-%d}",
-		"tooltip": false,
-	},
-	"backlight": {
-		"format": "{percent}%",
-		"tooltip": false,
-		"scroll-step": 5.0,
-	},
-  "pulseaudio": {
-    "format": "{volume}   {icon}",
-    "format-muted": "󰝟",
-    "format-icons": {
-      "headphone": "󰋋",
-      "hands-free": "󰽯",
-      "headset": "󰋎",
-      "phone": "",
-      "portable": "󰼽",
-      "car": "󰄍",
-      "default": [""]
-    },
-    "scroll-step": 1,
-    "on-click": "pavucontrol",
-    "ignored-sinks": ["Easy Effects Sink"]
-  },
-  "battery": {
-    "interval": 5,
-    "format": "{power}  W    {capacity}   {icon}",
-    "format-icons": ["","","","","",""],
-    "format-charging": "{capacity}  <span color='#00ff00'>{icon}</span>",
-    "tooltip": false
-    
-  }
+    "modules-left": ["cava","hyprland/window"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["hyprland/language","disk","memory","cpu","custom/pacmanAlt","pulseaudio","clock"],
+	"custom/spotify": {
+    "exec": "/usr/bin/python3 /home/ryu/.config/waybar/scripts/mediaplayer.py --player spotify",
+    "format": "{}  ",
+    "return-type": "json",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
 }
 
+},
+				
+"cava": {
+   //     "cava_config": "$XDG_CONFIG_HOME/cava/config",
+        "framerate": 30,
+        "autosens": 1,
+        "sensitivity": 1,
+        "bars": 14,
+        "lower_cutoff_freq": 50,
+        "higher_cutoff_freq": 10000,
+        "method": "pulse",
+        "source": "auto",
+        "stereo": true,
+        "reverse": false,
+        "bar_delimiter": 0,
+        "monstercat": false,
+        "waves": false,
+        "noise_reduction": 0.77,
+        "input_delay": 2,
+        "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+        "actions": {
+                   "on-click-right": "mode"
+                   }
+    },
+"clock": {
+        "interval": 1,    
+        "format": " {:%B %d  %H:%M}",
+        "format-alt": " {:%H:%M}",
+        "on-click-middle": "gnome-calendar",
+        "tooltip-format": "\n<span size='14pt' font='JetBrains Mono ExtraBold'>{calendar}</span>",
+        "calendar": {
+                    "mode"          : "month",
+                    "mode-mon-col"  : 3,
+                    "on-scroll"     : 1,
+                    "on-click-right": "mode",
+                    "format": {
+                              "months":     "<span color='#5e81ac'><b>{}</b></span>",
+                              "days":       "<span color='#88c0d0'><b>{}</b></span>",
+                              "weekdays":   "<span color='#d08770'><b>{}</b></span>",
+                              "today":      "<span color='#bf616a'><b><u>{}</u></b></span>"
+                              }
+                    }
+    },
+		"hyprland/workspaces": {
+			"active-only": false,
+			"all-outputs": true,
+			"disable-scroll": false,
+			"on-scroll-up": "hyprctl dispatch workspace e-1",
+			"on-scroll-down": "hyprctl dispatch workspace e+1",
+			"format": "{icon}",
+			"on-click": "activate",
+			"format-icons": {
+				"urgent": "",
+				"active": "",
+				"default": "",
+				},
+			"sort-by-number": true,
+		},
+    "custom/playerctl": {
+      "format": "{icon}",
+      "return-type": "json",
+      "exec": "playerctl --player=mpd -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      "on-click": "playerctl --player=mpd play-pause",
+      "on-click-middle": "playerctl --player=mpd previous",
+      "on-click-right": "playerctl --player=mpd next",
+      "format-icons": {
+        "Playing": "<span foreground='#46c880'> </span>",
+        "Paused": "<span foreground='#cdd6f4'> </span>",
+      },
+    },
+    "custom/playerlabel": {
+      "format": "<span>{}</span>",
+      "return-type": "json",
+      "max-length": 48,
+      "exec": "playerctl --player=mpd -a metadata --format '{\"text\": \"{{title}} - {{markup_escape(artist)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(artist)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      "on-click": "playerctl --player=mpd play-pause",
+      "on-click-middle": "playerctl --player=mpd previous",
+      "on-click-right": "playerctl --player=mpd next",
+    },
+		
+		"pulseaudio": {
+			"format": "<span size='12000'>{icon}</span> {volume}%",
+			"format-muted": "<span size='12000' foreground='#ff7eb6'></span> {volume}%",
+      "format-icons": {
+          "headphone": "",
+          "hands-free": "",
+          "headset": "",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": ["", ""],
+			},
+			"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+			"on-click-right": "pavucontrol",
+		},
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8,
+    },
+
+		"memory": {
+			"format": " {}%",
+			"format-alt": " {used}/{total} GiB",
+			"interval": 5,
+		},
+		"cpu": {
+			"format": "󰍛 {usage}%",
+			"format-alt": "󰍛 {avg_frequency} GHz",
+			"interval": 5,
+		},
+		"disk": {
+			"format": "󰋊 {}%",
+			"format-alt": "󰋊 {used}/{total} GiB",
+			"interval": 20,
+			"path": "/"
+		},
+
+		   "hyprland/window": {
+		    "format": "{}",
+            "max-length": 25,
+        "rewrite": {
+            "(.*) - Chromium": "🌎 $1",
+            "(.*) - Mozilla Firefox": "🌎 $1",
+            "(.*) - Thunar": " $1",
+            "(.*) - mpv": " $1",
+            
+            "(.*) - fish": " [$1]",
+            "(.*) - wezterm": " [$1]",
+            "(.*) - kitty": " [$1]",
+            "(.*) - nautilus": " $1",
+            "(.*) - Alacritty": " $1"
+
+            
+        },
+        "separate-outputs": true
+    },
+
+		"custom/pacmanAlt": {
+    			"format": " {}",
+    			"interval": 3600,
+    			"exec": "checkupdates | wc -l",
+    			"tooltip": false        
+    		},
+
+}
