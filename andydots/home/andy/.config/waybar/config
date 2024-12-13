@@ -5,7 +5,7 @@
 
     "modules-left": ["cava","hyprland/window"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["hyprland/language","disk","memory","cpu","custom/pacmanAlt","pulseaudio","clock"],
+    "modules-right": ["hyprland/language","pulseaudio","clock"],
 	"custom/spotify": {
     "exec": "/usr/bin/python3 /home/ryu/.config/waybar/scripts/mediaplayer.py --player spotify",
     "format": "{}  ",
@@ -39,25 +39,7 @@
                    "on-click-right": "mode"
                    }
     },
-"clock": {
-        "interval": 1,    
-        "format": " {:%B %d  %H:%M}",
-        "format-alt": " {:%H:%M}",
-        "on-click-middle": "gnome-calendar",
-        "tooltip-format": "\n<span size='14pt' font='JetBrains Mono ExtraBold'>{calendar}</span>",
-        "calendar": {
-                    "mode"          : "month",
-                    "mode-mon-col"  : 3,
-                    "on-scroll"     : 1,
-                    "on-click-right": "mode",
-                    "format": {
-                              "months":     "<span color='#5e81ac'><b>{}</b></span>",
-                              "days":       "<span color='#88c0d0'><b>{}</b></span>",
-                              "weekdays":   "<span color='#d08770'><b>{}</b></span>",
-                              "today":      "<span color='#bf616a'><b><u>{}</u></b></span>"
-                              }
-                    }
-    },
+
 		"hyprland/workspaces": {
 			"active-only": false,
 			"all-outputs": true,
@@ -73,28 +55,7 @@
 				},
 			"sort-by-number": true,
 		},
-    "custom/playerctl": {
-      "format": "{icon}",
-      "return-type": "json",
-      "exec": "playerctl --player=mpd -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-      "on-click": "playerctl --player=mpd play-pause",
-      "on-click-middle": "playerctl --player=mpd previous",
-      "on-click-right": "playerctl --player=mpd next",
-      "format-icons": {
-        "Playing": "<span foreground='#46c880'> </span>",
-        "Paused": "<span foreground='#cdd6f4'> </span>",
-      },
-    },
-    "custom/playerlabel": {
-      "format": "<span>{}</span>",
-      "return-type": "json",
-      "max-length": 48,
-      "exec": "playerctl --player=mpd -a metadata --format '{\"text\": \"{{title}} - {{markup_escape(artist)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(artist)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-      "on-click": "playerctl --player=mpd play-pause",
-      "on-click-middle": "playerctl --player=mpd previous",
-      "on-click-right": "playerctl --player=mpd next",
-    },
-		
+
 		"pulseaudio": {
 			"format": "<span size='12000'>{icon}</span> {volume}%",
 			"format-muted": "<span size='12000' foreground='#ff7eb6'></span> {volume}%",
@@ -116,24 +77,7 @@
         "spacing": 8,
     },
 
-		"memory": {
-			"format": " {}%",
-			"format-alt": " {used}/{total} GiB",
-			"interval": 5,
-		},
-		"cpu": {
-			"format": "󰍛 {usage}%",
-			"format-alt": "󰍛 {avg_frequency} GHz",
-			"interval": 5,
-		},
-		"disk": {
-			"format": "󰋊 {}%",
-			"format-alt": "󰋊 {used}/{total} GiB",
-			"interval": 20,
-			"path": "/"
-		},
-
-		   "hyprland/window": {
+		"hyprland/window": {
 		    "format": "{}",
             "max-length": 25,
         "rewrite": {
@@ -152,12 +96,23 @@
         },
         "separate-outputs": true
     },
-
-		"custom/pacmanAlt": {
-    			"format": " {}",
-    			"interval": 3600,
-    			"exec": "checkupdates | wc -l",
-    			"tooltip": false        
-    		},
-
+"clock": {
+        "interval": 1,    
+        "format": " {:%B %d  %H:%M}",
+        "format-alt": " {:%H:%M}",
+        "on-click-middle": "gnome-calendar",
+        "tooltip-format": "\n<span size='14pt' font='JetBrains Mono ExtraBold'>{calendar}</span>",
+        "calendar": {
+                    "mode"          : "month",
+                    "mode-mon-col"  : 3,
+                    "on-scroll"     : 1,
+                    "on-click-right": "mode",
+                    "format": {
+                              "months":     "<span color='#5e81ac'><b>{}</b></span>",
+                              "days":       "<span color='#88c0d0'><b>{}</b></span>",
+                              "weekdays":   "<span color='#d08770'><b>{}</b></span>",
+                              "today":      "<span color='#bf616a'><b><u>{}</u></b></span>"
+                              }
+                    }
+    },
 }
