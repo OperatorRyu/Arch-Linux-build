@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Take a screenshot and send a notification
+
+screenshots_dir="/home/$USER/Pictures/screenshots"
+filename="$(date +%s).png"
+
+if [ ! -d "$screenshots_dir" ]; then
+  mkdir -p "$screenshots_dir"
+fi
+
+case $1 in
+fullscreen)
+  hyprshot -m active -m output --output-folder "$screenshots_dir" -f "$filename"
+  ;;
+select)
+  hyprshot -m region --output-folder "$screenshots_dir" -f "$filename"
+  ;;
+window)
+  hyprshot -m window --output-folder "$screenshots_dir" -f "$filename"
+esac

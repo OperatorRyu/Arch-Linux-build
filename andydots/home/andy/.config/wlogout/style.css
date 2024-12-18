@@ -1,72 +1,52 @@
+@import "../../.cache/wal/colors-waybar.css";
+
+* {
+  font-size: 18px;
+  font-family: "JetBrainsMono Nerd Font";
+	border-radius: 10px;
+}
+
 window {
-    color: #ffffff;
-    background-color: rgba(56, 56, 58, 0.7);
-    font-family: 'FiraCode Nerd Font', sans-serif;
-    font-weight: bold;
-    font-size: 20px;
+	background-color: rgba(0, 0, 0, 0);
 }
 
 button {
-    margin: 5px;
-    color: #ff00f5;
-    background-color: #000000;
-    background-size: 20%;
-    background-repeat: no-repeat;
-    background-position: center;
-    border: 5px solid #ff00f5;
-    border-radius: 15px;
-    box-shadow: none;
-    text-shadow: none;
-    opacity: 0.9;
-    transition: background-color 0.2s ease-in-out;
+	color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+  outline-style: none;
+  border: none;
+  box-shadow: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 30%;
 }
 
-button:focus, button:active, button:hover {
-    color: #06f1fb;
-    background-color: #000000;
-    border: 5px solid #06f1fb;
-    text-shadow: 0 0 5px #06f1fb;
-    box-shadow: 0 0 5px #06f1fb;
-}
-
-#lock {
-    background-image: image(url("./icons/lock.png"));
-}
-#lock:hover, #lock:focus {
-    background-image: image(url("./icons/lock-hover.png"));
+button:hover,
+button:focus {
+  color: @color6;
+  background-color: rgba(0, 0, 0, 0.6);
+  background-size: 40%;
 }
 
 #logout {
-    background-image: image(url("./icons/logout.png"));
-}
-#logout:hover, #logout:focus {
-    background-image: image(url("./icons/logout-hover.png"));
+	background-image: image(url("icons/logout.png"));
 }
 
 #suspend {
-    background-image: image(url("./icons/suspend.png"));
-}
-#suspend:hover, #suspend:focus {
-    background-image: image(url("./icons/suspend-hover.png"));
-}
-
-#hibernate {
-    background-image: image(url("./icons/hibernate.png"));
-}
-#hibernate:hover, #hibernate:focus {
-    background-image: image(url("./icons/hibernate-hover.png"));
+	background-image: image(url("icons/suspend.png"));
 }
 
 #shutdown {
-    background-image: image(url("./icons/shutdown.png"));
-}
-#shutdown:hover, #shutdown:focus {
-    background-image: image(url("./icons/shutdown-hover.png"));
+	background-image: image(url("icons/shutdown.png"));
 }
 
 #reboot {
-    background-image: image(url("./icons/reboot.png"));
+	background-image: image(url("icons/reboot.png"));
 }
-#reboot:hover, #reboot:focus {
-    background-image: image(url("./icons/reboot-hover.png"));
+
+#logout,
+#suspend,
+#shutdown,
+#reboot {
+  margin: 2px;
 }

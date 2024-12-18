@@ -46,7 +46,7 @@ This guide contains everything needed to set up my high-security, minimalist wor
      - **Profile:** Desktop, Hyprland, polkit, proprietary graphics driver, no greeter
      - **Audio:** pipewire
      - **Kernel:** linux-hardened
-     - **Additional Packages:** git qutebrowser clamav neovim discord gcc openssh nftables spotify-launcher firewalld wireguard-tools kdeconnect htop fastfetch libreoffice-fresh cmake smbclient nmap waybar dunst hyprlock hypridle gnome-keyring ly cava python-pywal
+     - **Additional Packages:** ttf-jetbrains-mono-nerd noto-fonts-emoji git qutebrowser clamav neovim discord gcc openssh nftables spotify-launcher firewalld wireguard-tools kdeconnect htop fastfetch libreoffice-fresh cmake smbclient nmap waybar dunst hyprlock hypridle gnome-keyring ly cava python-pywal
      - **Network Configuration:** NetworkManager
      - **Timezone:** Africa/Johannesburg
      - **Automatic Time Sync:** Skip
@@ -64,7 +64,21 @@ This guide contains everything needed to set up my high-security, minimalist wor
      cd /home/[Your Username]/aur/Arch-Linux-build/andydots/home/andy/
      cp -rvi /home/[Your Username]/aur/Arch-Linux-build/andydots/home/andy/.config /home/[Your Username]/
    ```
-6. **Hardening Security**
+6. **Install AUR Software (Check their dependencies)**
+   tofi 
+   anydesk-bin 
+   youtube-dl 
+   github-desktop 
+   drawio-desktop 
+   wlogout 
+   cava 
+   pw-volume 
+   proton-mail-bin 
+   protonvpn 
+   protonpass-bin 
+   standardnotes-desktop
+
+7. **Hardening Security**
 
    - Networking (Set a Static IP)
    ```bash
@@ -79,4 +93,64 @@ This guide contains everything needed to set up my high-security, minimalist wor
       sudo nmcli con modify "$WIFI_INTERFACE" ipv4.method manual
       sudo nmcli con up "$WIFI_INTERFACE"
    ```
-   
+   - Firewall
+   ```bash
+   vim /etc/nftables.conf
+   ```
+
+   ```bash
+   #!/usr/bin/nft -f
+      table inet filter {
+      chain input {
+      type filter hook input priority filter; policy drop;
+      ct state invalid drop
+      ct state {established, related} accept
+      iifname lo accept
+      ip protocol icmp accept
+      meta l4proto ipv6-icmp accept
+      pkttype host limit rate 5/second counter reject with icmpx type admin-prohibited
+      }
+
+      chain forward {
+      type filter hook forward priority filter; policy drop;
+      }
+   }
+   ```
+   :w and :exit
+
+   ```bash
+   vim /etc/sysctl.d/90-network.conf
+   ```
+   ```bash
+   net.ipv4.ip_forward = 0
+   net.ipv6.conf.all.forwarding = 0
+   net.ipv4.tcp_syncookies = 1
+   net.ipv4.conf.all.accept_redirects = 0
+   net.ipv4.conf.default.accept_redirects = 0
+   net.ipv4.conf.all.secure_redirects = 0
+   net.ipv4.conf.default.secure_redirects = 0
+   net.ipv6.conf.all.accept_redirects = 0
+   net.ipv6.conf.default.accept_redirects = 0
+   net.ipv4.conf.all.send_redirects = 0
+   net.ipv4.conf.default.send_redirects = 0
+   ```
+   :w and :exit
+
+   8. **Start Services**
+   ```bash
+   #NetworkManager
+   sudo systemctl enable NetworkManager.service
+   sudo systemctl start NetworkManager.service
+
+   #firewall
+   sudo systemctl enable nftables
+   sudo systemctl start nftables
+   nft list ruleset
+
+   #antivirus
+   sudo freshclam
+   sudo systemctl enable clamav-freshclam.service
+   sudo systemctl start clamav-freshclam.service
+   sudo systemctl enable clamav-daemon.service
+   sudo systemctl start clamav-daemon.service
+   ```

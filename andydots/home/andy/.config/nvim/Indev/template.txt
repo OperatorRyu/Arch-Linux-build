@@ -1,0 +1,99 @@
+--install package manager for nvim
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+
+if fn.empty(fn.glob(install_path)) > 0 then
+  PACKER_BOOTSTRAP = fn.system({
+    'git',
+    'clone',
+    '--depth', '1',
+    'https://github.com/wbthomason/packer.nvim',
+    install_path
+  })
+  print("Installing packer... Close and reopen nvim after done")
+  vim.cmd [[packadd packer.nvim]]
+end
+
+--autocommand to reload Neovim and run `PackerSync` whenever you save the init.lua
+vim.cmd([[ 
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost init.lua source <afile> | PackerSync
+  augroup end
+]])
+
+-- Initialize Packer
+require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim' -- Packer can manage itself
+  use 'nvim-lua/plenary.nvim' -- Lua functions used by many plugins
+  use 'kyazdani42/nvim-tree.lua' -- File Explorer
+  use 'vim-airline/vim-airline' -- Status line
+  use 'vim-airline/vim-airline-themes'
+  use 'mhinz/vim-startify' -- Start screen
+  use 'neovim/nvim-lspconfig' -- Language Server Configurations
+  use 'hrsh7th/nvim-cmp' -- Autocompletion
+  use 'hrsh7th/cmp-nvim-lsp' -- LSP completion source
+  use 'hrsh7th/cmp-buffer' -- Buffer completion source
+  use 'hrsh7th/cmp-path' -- Path completion source
+  use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  use 'rafamadriz/friendly-snippets' -- Snippets library
+  use 'nvim-treesitter/nvim-treesitter' -- Syntax Highlighting
+  use "lunarvim/synthwave84.nvim"
+  use "Exafunction/codeium.vim"
+  
+  -- Automatically set up your configuration after cloning packer.nvim
+  if PACKER_BOOTSTRAP then
+    require('packer').sync()
+  end
+end)
+
+-- Set IDE configuration
+vim.opt.number = true            -- Line numbers
+vim.opt.relativenumber = true    -- Relative line numbers
+vim.opt.tabstop = 4              -- Tab size
+vim.opt.shiftwidth = 4           -- Indentation
+vim.opt.expandtab = true         -- Use spaces instead of tabs
+vim.opt.cursorline = true        -- Highlight current line
+vim.opt.termguicolors = true     -- Enable true color
+vim.opt.wrap = false             -- Disable line wrap
+vim.opt.signcolumn = "yes"       -- Show sign column
+vim.cmd("colorscheme synthwave84")  -- Set Synthwave84 as the theme
+
+-- File Explorer (nvim-tree)
+require('nvim-tree').setup {
+    view = {
+        width = 30,
+        side = 'left',
+    },
+    filters = {
+        dotfiles = false,
+    },
+}
+
+-- Startify
+vim.g.startify_lists = {
+    { header = {'   Recent Files'}, type = 'files' },
+    { header = {'   Sessions'}, type = 'sessions' }
+}
+vim.g.startify_session_dir = fn.stdpath('config')..'/sessions'
+
+-- LSP Config
+local lspconfig = require('lspconfig')
+local on_attach = function(client, bufnr)
+    local buf_map = vim.api.nvim_buf_set_keymap
+    local opts = { noremap=true, silent=true }
+    buf_map(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_map(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    -- Add more keybindings as needed
+end
+
+-- Ensure you have the necessary language servers installed.
+-- You can install them via package managers or manually.
+
+-- Example LSP setups:
+lspconfig.pyright.setup{ on_attach = on_attach }       -- Python
+lspconfig.ts_ls.setup{ on_attach = on_attach }      -- JavaScript/TypeScript
+lspconfig.phpactor.setup{ on_attach = on_attach }      -- PHP
+lspconfig.clangd.setup{ on_attach = on_attach }        -- C/C++
+lspconfig.jdtls.setup{ on_attach = on_attach }         -- Java
+lspconfig.csharp_ls.setup{ on_attach = on_attach }     -- C#

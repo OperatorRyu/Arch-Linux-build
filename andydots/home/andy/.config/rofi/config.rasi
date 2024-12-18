@@ -1,0 +1,127 @@
+@theme "~/.cache/wal/colors-rofi-dark.rasi"
+
+configuration {
+  drun-display-format: "{name}";
+  font: "JetBrainsMono Nerd Font 14";
+  modi: "drun";
+  show-icons: true;
+  icon-theme: "la-capitaine";
+}
+
+window {
+  width: 900px;
+  border-radius: 10px;
+  background-color: @background;
+  border: 2px;
+  border-color: @border-color;
+  children: [ "mainbox" ];
+}
+
+mainbox {
+  background-color: transparent;
+  orientation: horizontal;
+  children: [ "listbox" ];
+}
+
+listbox {
+  background-color: transparent;
+  spacing: 10px;
+  orientation: vertical;
+  children: [ "inputbar", "listview" ];
+}
+
+inputbar {
+  text-color: @text-color;
+  padding: 10px;
+  margin: 10px;
+  background-color: @background;
+  border-radius: 10px;
+  children: [ "entry" ];
+}
+
+entry {
+  background-color: transparent;
+  text-color: @text-color;
+  placeholder-color: inherit;
+}
+
+listview {
+  columns: 2;
+  lines: 5;
+  cycle: true;
+  scrollbar: false;
+  layout: vertical;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+}
+
+element {
+  enabled: true;
+  padding: 8px;
+  margin: 2px;
+  text-color: inherit;
+  border-radius: 10px;
+}
+
+element.normal.normal {
+  background-color: @element-background;
+  text-color: @foreground;
+}
+
+element.normal.urgent {
+  background-color: @element-background;
+  text-color: @foreground;
+}
+
+element.normal.active {
+  background-color: @element-background;
+  text-color: @foreground;
+}
+
+element.selected.normal {
+  background-color: @main-color;
+  text-color: @foreground;
+}
+
+element.selected.urgent {
+  background-color: @main-color;
+  text-color: @foreground;
+}
+
+element.selected.active {
+  background-color: @main-color;
+  text-color: @foreground;
+}
+
+element.alternate.normal {
+  background-color: @element-background;
+  text-color: @foreground;
+}
+
+element.alternate.urgent {
+  background-color: @element-background;
+  text-color: @foreground;
+}
+
+element.alternate.active {
+  background-color: @element-background;
+  text-color: @foreground;
+}
+
+element-icon {
+  background-color: transparent;
+  text-color: inherit;
+  size: 5ch;
+}
+
+element-text {
+  text-color: @text-color;
+  background-color: transparent;
+  vertical-align: 0.5;
+}
+
+element-text selected.normal {
+  text-color: @text-color-selected;
+  background-color: transparent;
+}
