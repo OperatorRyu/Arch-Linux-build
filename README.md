@@ -40,43 +40,43 @@ This guide contains everything needed to set up my high-security, minimalist wor
      - **Disk Encryption:** Yes, set the encryption password
      - **BootLoader:** GRUB (or Systemd if available)
      - **Swap:** Skip
-     - **Hostname:** [Give a name to the device]
+     - **Hostname:** laptop name
      - **Root Password:** Set the root password
      - **User Account:** Add user, set the login password, confirm
      - **Profile:** Desktop, Hyprland, polkit, proprietary graphics driver, no greeter
      - **Audio:** pipewire
      - **Kernel:** linux-hardened
-     - **Additional Packages:** git
+     - **Additional Packages:** git qutebrowser clamav neovim discord gcc openssh nftables spotify-launcher firewalld wireguard-tools kdeconnect htop fastfetch libreoffice-fresh cmake smbclient nmap waybar dunst hyprlock hypridle gnome-keyring ly cava python-pywal
      - **Network Configuration:** NetworkManager
      - **Timezone:** Africa/Johannesburg
      - **Automatic Time Sync:** Skip
      - **Optional Repositories:** multilib
      - Select **Install**, wait for completion, then reboot and log in.
 
-## Clone Repo
+5. **Clone Repo and move dotfiles**
 
+   - Clone repo
    ```bash
-git clone https://github.com/OperatorRyu/Arch-Linux-build.git /home/[user]/
+     git clone https://github.com/OperatorRyu/Arch-Linux-build.git /home/[Your Username]/aur
    ```
+   - Move dotfiles
+   ```bash
+     cd /home/[Your Username]/aur/Arch-Linux-build/andydots/home/andy/
+     cp -rvi /home/[Your Username]/aur/Arch-Linux-build/andydots/home/andy/.config /home/[Your Username]/
+   ```
+6. **Hardening Security**
 
-## Install Software
-
-```bash
-cd /home/[user]/
-sudo bash finalize.sh
-```
-
-## Final Touches
-
-**These are primarily for me and the general user wont make use of it at all**
-
-**Browser:**
-1) Set Home Page to https://operatorryu.github.io/startpage/
-2) Set Search engine to https://4Get.ca
-
-**Static IP Address**
-
-```bash
-cd /home/[user]/
-sudo bash static_ip.sh
-```
+   - Networking (Set a Static IP)
+   ```bash
+      sudo nmcli con modify "$ETH_INTERFACE" ipv4.addresses "192.168.8.11/24"
+      sudo nmcli con modify "$ETH_INTERFACE" ipv4.gateway "192.168.8.2"
+      sudo nmcli con modify "$ETH_INTERFACE" ipv4.dns "94.140.14.14,94.140.15.15"
+      sudo nmcli con modify "$ETH_INTERFACE" ipv4.method manual
+      sudo nmcli con up "$ETH_INTERFACE"
+      sudo nmcli con modify "$WIFI_INTERFACE" ipv4.addresses "192.168.8.11/24"
+      sudo nmcli con modify "$WIFI_INTERFACE" ipv4.gateway "192.168.8.2"
+      sudo nmcli con modify "$WIFI_INTERFACE" ipv4.dns "94.140.14.14,94.140.15.15"
+      sudo nmcli con modify "$WIFI_INTERFACE" ipv4.method manual
+      sudo nmcli con up "$WIFI_INTERFACE"
+   ```
+   
