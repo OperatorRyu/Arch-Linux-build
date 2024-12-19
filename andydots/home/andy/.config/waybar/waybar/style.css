@@ -139,3 +139,11 @@ tooltip label {
 #battery {
   padding: 0px 8px;
 }
+
+.custom-spotify {
+  padding: 0 10px;
+  margin: 0 4px;
+  background: alpha(@background, 0.5);
+  color: lighter(@main-color);
+  border-radius: 10px;
+}
