@@ -231,7 +231,7 @@
   "custom/theme-switcher": {
     "format": "󰏘",
     "tooltip": false,
-    "on-click": "~/.config/hypr/scripts/toggle_theme.sh",
+    "on-click": "~/.config/hypr/scripts/wallpaperchanger.sh",
   },
   "clock": {
     "format": "{:%H:%M}",
